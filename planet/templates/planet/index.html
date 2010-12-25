@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Planet Python Japan</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" href="css/planet.css" type="text/css">
+    </head>
+
+    <body>
+<h1>Planet Python Japan</h1>
+<div class="rss">
+<A href="rss.xml">RSS 2.0<img src="images/feed.png" /></A>
+<A href="atom.xml">ATOM<img src="images/feed.png" /></A>
+</div>
+{% for e1 in recent_list %}
+<h2>{{ e1.0.0.pub_date}}</h2>
+ {% for e2 in e1 %}
+ <h3 class="post"><a href="{{e2.0.feed.link}}">{{e2.0.feed.title}}</a></h3>
+    {% for e in e2 %}
+    <h4><a href="{{e.link}}">{{e.title}}</a></h4>
+    <div class="entry">
+    <p>{{e.description|removetags:"script "|safe}}</p>
+    {% if e.pub_time %}
+    <p class="time">{{e.pub_time}}</p>
+    {% endif %}
+    </div>
+    {% endfor %}
+ {% endfor %}
+{% endfor %}
+
+
+<div class="sidebar">
+<h2>Subscriptions</h2>
+<ul>
+{% for f in feed_list %}
+<li><a href="{{f.link}}" title="{{f.author}}">{{f.title}}</a></li>
+{% endfor %}
+</ul>
+</div>
+</body>
+
+</html>
