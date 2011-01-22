@@ -24,9 +24,9 @@ from django.core.management.base import BaseCommand
 from planet.models import Feed, Entry
 
 class Command(BaseCommand):
-    def handle(self, proxy=None *args):
+    def handle(self, *args, **kwargs):
         NOW = datetime.datetime.utcnow()
-        
+        proxy = kwargs.get('proxy')
         if proxy:
             proxy_handlers = [urllib2.ProxyHandler({"http": proxy})]
         else:
