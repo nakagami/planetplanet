@@ -13,12 +13,13 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import RedirectView
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
 urlpatterns = patterns('',
-    (r'^$', 'django.shortcuts.redirect', {'url' : '/planet/'}),
-    (r'^planet/', include('planet.urls')),
-
+    url(regex=r'^$', view=RedirectView.as_view(url='planet')),
+    url(regex=r'^planet/', view=include('planet.urls'), name='planet'),
     (r'^admin/', include(admin.site.urls)),
 )
