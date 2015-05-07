@@ -42,7 +42,6 @@ def index(request):
     recent_list = []
     for day in days:
         blog_list = [dict_tree[day][k] for k in dict_tree[day]]
-        blog_list.sort(pub_dttm_desc)
         recent_list.append(blog_list)
         
     return render_to_response('planet/index.html',
