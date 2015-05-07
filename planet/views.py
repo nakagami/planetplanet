@@ -20,7 +20,7 @@
 #  THE SOFTWARE.
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from models import Entry, Feed
+from .models import Entry, Feed
 import datetime
 
 def pub_dttm_desc(a, b):
