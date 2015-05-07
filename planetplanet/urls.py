@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-]
+urlpatterns = patterns('',
+    (r'^$', 'django.views.generic.simple.redirect_to', {'url' : '/planet/'}),
+    (r'^planet/', include('planetplanet.planet.urls')),
+
+    (r'^admin/', include(admin.site.urls)),
+)
