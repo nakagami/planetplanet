@@ -18,11 +18,9 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #  THE SOFTWARE.
-import sys, urllib2, datetime
-import feedparser
 from django.core.management.base import BaseCommand
 from planet.models import update_rss, Feed, Entry
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        update_rss(proxy=kwargs.get('proxy'))
+        update_rss()

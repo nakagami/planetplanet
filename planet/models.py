@@ -18,25 +18,17 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #  THE SOFTWARE.
+import feedparser
+import datetime
 from django.db import models
 from django.conf import settings
-import datetime
 from dateutil import zoneinfo, tz
 
-def update_rss(proxy=None):
-    import feedparser
+def update_rss():
     NOW = datetime.datetime.utcnow()
-    if proxy:
-        proxy_handlers = [urllib2.ProxyHandler({"http": proxy})]
-    else:
-        proxy_handlers = None
-    
     for f in Feed.objects.all():
         # Sync RSS feed.
-        if proxy_handlers:
-            d = feedparser.parse(f.rss_url, handlers = proxy_handlers)
-        else:
-            d = feedparser.parse(f.rss_url)
+        d = feedparser.parse(f.rss_url)
     
         if d['feed'].get('title'):
             f.title = d.feed.title
