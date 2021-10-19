@@ -96,7 +96,7 @@ class Entry(models.Model):
     description = models.TextField()
     author = models.CharField(max_length=200, blank=True)
     pub_dttm = models.DateTimeField()
-    feed = models.ForeignKey(Feed)
+    feed = models.ForeignKey(Feed, on_delete=models.CASCADE)
     def __unicode__(self):
         return self.title
 
