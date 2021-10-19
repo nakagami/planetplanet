@@ -33,8 +33,3 @@ urlpatterns = [
     re_path(r'^$', planet.views.index),
     re_path(r'^(.*\.xml)$', Feed(), {'feed_dict': feeds}),
 ]
-if settings.DEBUG:
-    urlpatterns += [
-        re_path(r'^css/(.*\.css)$', 'django.views.static.serve', {'document_root':os.path.join(os.getcwd(), 'static/planet/css')}),
-        re_path(r'^images/(.*)$', 'django.views.static.serve', {'document_root':os.path.join(os.getcwd(), 'static/planet/images')}),
-    ]
