@@ -19,7 +19,7 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #  THE SOFTWARE.
 from django.conf import settings
-from django.urls import path
+from django.urls import re_path
 from django.contrib.syndication.views import Feed
 from planet.feeds import RecentFeed, AtomRecentFeed
 import planet.views
@@ -30,11 +30,11 @@ feeds = {
 }
 
 urlpatterns = [
-    path(r'^$', planet.views.index),
-    path(r'^(.*\.xml)$', Feed(), {'feed_dict': feeds}),
+    re_path(r'^$', planet.views.index),
+    re_path(r'^(.*\.xml)$', Feed(), {'feed_dict': feeds}),
 ]
 if settings.DEBUG:
     urlpatterns += [
-        path(r'^css/(.*\.css)$', 'django.views.static.serve', {'document_root':os.path.join(os.getcwd(), 'static/planet/css')}),
-        path(r'^images/(.*)$', 'django.views.static.serve', {'document_root':os.path.join(os.getcwd(), 'static/planet/images')}),
+        re_path(r'^css/(.*\.css)$', 'django.views.static.serve', {'document_root':os.path.join(os.getcwd(), 'static/planet/css')}),
+        re_path(r'^images/(.*)$', 'django.views.static.serve', {'document_root':os.path.join(os.getcwd(), 'static/planet/images')}),
     ]
