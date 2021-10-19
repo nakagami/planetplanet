@@ -3,14 +3,14 @@
     <head>
         <title>Planet Python Japan</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="stylesheet" href="css/planet.css" type="text/css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}planet/css/planet.css" type="text/css">
     </head>
 
     <body>
 <h1>Planet Python Japan</h1>
 <div class="rss">
-<A href="rss.xml">RSS 2.0<img src="images/feed.png" /></A>
-<A href="atom.xml">ATOM<img src="images/feed.png" /></A>
+<A href="rss.xml">RSS 2.0<img src="{{ STATIC_URL }}planet/images/feed.png" /></A>
+<A href="atom.xml">ATOM<img src="{{ STATIC_URL }}planet/images/feed.png" /></A>
 </div>
 {% for e1 in recent_list %}
 <h2>{{ e1.0.0.pub_date}}</h2>
