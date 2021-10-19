@@ -20,6 +20,7 @@
 #  THE SOFTWARE.
 from django.conf import settings
 from django.urls import path
+from django.contrib.syndication.views import Feed
 from planet.feeds import RecentFeed, AtomRecentFeed
 import planet.views
 import os
@@ -30,8 +31,7 @@ feeds = {
 
 urlpatterns = [
     path(r'^$', planet.views.index),
-    path(r'^(.*\.xml)$', 'django.contrib.syndication.views.Feed',
-            {'feed_dict': feeds}),
+    path(r'^(.*\.xml)$', Feed(), {'feed_dict': feeds}),
 ]
 if settings.DEBUG:
     urlpatterns += [
