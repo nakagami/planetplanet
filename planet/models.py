@@ -25,7 +25,7 @@ try:
     import zoneinfo
 except ImportError:
     # https://pypi.org/project/backports.zoneinfo/
-from backports import zoneinfo
+    from backports import zoneinfo
 
 def update_rss(proxy=None):
     import feedparser
