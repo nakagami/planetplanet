@@ -18,22 +18,23 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #  THE SOFTWARE.
-from django.conf.urls.defaults import *
 from django.conf import settings
-from feeds import RecentFeed, AtomRecentFeed
+from django.urls import path
+from planet.feeds import RecentFeed, AtomRecentFeed
+import planet.views
 import os
 feeds = {
     'rss.xml' : RecentFeed,
     'atom.xml' : AtomRecentFeed,
 }
 
-urlpatterns = patterns('',
-    (r'^$', 'planetplanet.planet.views.index'),
-    (r'^(.*\.xml)$', 'django.contrib.syndication.views.feed',
+urlpatterns = [
+    path(r'^$', planet.views.index),
+    path(r'^(.*\.xml)$', 'django.contrib.syndication.views.Feed',
             {'feed_dict': feeds}),
-)
+]
 if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^css/(.*\.css)$', 'django.views.static.serve', {'document_root':os.path.join(os.getcwd(), 'static/planet/css')}),
-        (r'^images/(.*)$', 'django.views.static.serve', {'document_root':os.path.join(os.getcwd(), 'static/planet/images')}),
-    )
+    urlpatterns += [
+        path(r'^css/(.*\.css)$', 'django.views.static.serve', {'document_root':os.path.join(os.getcwd(), 'static/planet/css')}),
+        path(r'^images/(.*)$', 'django.views.static.serve', {'document_root':os.path.join(os.getcwd(), 'static/planet/images')}),
+    ]

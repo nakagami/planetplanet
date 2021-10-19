@@ -19,8 +19,8 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #  THE SOFTWARE.
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
-from models import Entry, Feed
+from django.shortcuts import render
+from planet.models import Entry, Feed
 import datetime
 
 def pub_dttm_desc(a, b):
@@ -45,5 +45,5 @@ def index(request):
         blog_list.sort(pub_dttm_desc)
         recent_list.append(blog_list)
         
-    return render_to_response('planet/index.html',
+    return render('planet/index.html',
             {'feed_list':feed_list, 'recent_list':recent_list})
