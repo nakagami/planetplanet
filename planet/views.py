@@ -34,8 +34,7 @@ def index(request):
     dict_tree = {}
     for e in entry_list:
         dict_tree.setdefault(e.pub_date(), {}).setdefault(e.feed_id, []).append(e)
-    days = dict_tree.keys()
-    days.sort()
+    days = list(dict_tree.keys())
     days.reverse()
 
     # Recreate as list tree
