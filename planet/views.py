@@ -44,5 +44,5 @@ def index(request):
         blog_list.sort(pub_dttm_desc)
         recent_list.append(blog_list)
         
-    return render('planet/index.html',
+    return render(request, 'planet/index.html',
             {'feed_list':feed_list, 'recent_list':recent_list})
