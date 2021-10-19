@@ -19,7 +19,7 @@
     {% for e in e2 %}
     <h4><a href="{{e.link}}">{{e.title}}</a></h4>
     <div class="entry">
-    <p>{{e.description|removetags:"script "|safe}}</p>
+    <p>{{e.description}}</p>
     {% if e.pub_time %}
     <p class="time">{{e.pub_time}}</p>
     {% endif %}
