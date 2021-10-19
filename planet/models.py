@@ -21,7 +21,11 @@
 from django.db import models
 from django.conf import settings
 import datetime
-from dateutil import zoneinfo, tz
+try:
+    import zoneinfo
+except ImportError:
+    # https://pypi.org/project/backports.zoneinfo/
+from backports import zoneinfo
 
 def update_rss(proxy=None):
     import feedparser
